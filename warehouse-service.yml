@@ -1,12 +1,14 @@
 eureka:
     client:
-        service-url:
-            default-zone: ${EUREKA_URI:http://localhost:8761/eureka}
+        fetchRegistry: true
+        registerWithEureka: true
+        serviceUrl:
+            defaultZone: http://eureka-service:8761/eureka
     instance:
-        instance-id: ${spring.application.name}:${random.value}
-        prefer-ip-address: true
+        instance-id: ${spring.application.name}:${instanceId:${random.value}}
+        preferIpAddress: true
 kafka:
-    host: localhost:9092
+    host: kafka:9092
     topics:
         waybill-invoice:
             partitionCount: 1
@@ -26,7 +28,7 @@ spring:
     datasource:
         driver-class-name: org.postgresql.Driver
         password: postgres
-        url: jdbc:postgresql://localhost:5432/warehouse
+        url: jdbc:postgresql://postgres:5432/warehouse
         username: postgres
     jpa:
         hibernate:
@@ -39,12 +41,11 @@ spring:
 #            resourceserver:
 #                jwt:
 #                    issuer-uri: ${KEYCLOAK_URL:http://localhost:9595}/auth/realms/warehouse_realm
-    profiles:
-        active: default
-    boot:
-        admin:
-            client:
-                url: http://localhost:9889
+
+#    boot:
+#        admin:
+#            client:
+#                url: http://localhost:9889
 management:
     endpoints:
         web:
