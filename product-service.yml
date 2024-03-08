@@ -43,8 +43,6 @@ management:
       enabled: true
 eureka:
   client:
-    registerWithEureka: true
-    fetch-registry: false
     service-url:
       default-zone: ${EUREKA_URI:http://172.22.0.4:8761/eureka}
   instance:
