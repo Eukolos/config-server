@@ -19,8 +19,7 @@ spring:
       username: admin
   application:
     name: product-service
-  profiles:
-    active: default
+
 #  boot:
 #    admin:
 #      client:
