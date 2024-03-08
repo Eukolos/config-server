@@ -1,13 +1,12 @@
 spring:
   application:
     name: finance-service
-  profiles:
-    active: default
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          issuer-uri: ${KEYCLOAK_URL:http://localhost:9595}/auth/realms/warehouse_realm
+
+#  security:
+#    oauth2:
+#      resourceserver:
+#        jwt:
+#          issuer-uri: ${KEYCLOAK_URL:http://localhost:9595}/auth/realms/warehouse_realm
   jpa:
     hibernate:
       ddl-auto: create
@@ -17,14 +16,14 @@ spring:
         format_sql: true
         use_sql_comments: true
   datasource:
-    url: jdbc:postgresql://localhost:5432/finance
+    url: jdbc:postgresql://postgres:5432/finance
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver
-  boot:
-    admin:
-      client:
-        url: http://localhost:9889
+#  boot:
+#    admin:
+#      client:
+#        url: http://localhost:9889
 management:
   endpoints:
     web:
@@ -40,7 +39,7 @@ management:
       enabled: true
 
 kafka:
-  host: localhost:9092
+  host: kafka:9092
   topics:
     waybill-invoice:
       topic: warehouse-service.waybill-invoice.0
@@ -51,10 +50,12 @@ kafka:
 
 eureka:
   client:
-    service-url:
-      default-zone: ${EUREKA_URI:http://localhost:8761/eureka}
+    fetchRegistry: true
+    registerWithEureka: true
+    serviceUrl:
+      defaultZone: http://eureka-service:8761/eureka
   instance:
-    instance-id: '${spring.application.name}:${random.value}  '
-    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${instanceId:${random.value}}
+    preferIpAddress: true
 server:
   port: 8012
