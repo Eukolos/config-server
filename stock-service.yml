@@ -38,14 +38,7 @@ management:
       enabled: true
     env:
       enabled: true
-kafka:
-  host: kafka:9092
-  topics:
-    waybill-record:
-      topic: warehouse-service.waybill-record.0
-      consumerGroup: ${spring.application.name}-waybill-record-consumer
-      replicationFactor: 1
-      retentionInMs: 604800000
+
 
 eureka:
   client:
