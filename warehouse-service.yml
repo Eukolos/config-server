@@ -1,16 +1,4 @@
-kafka:
-    host: kafka:9092
-    topics:
-        waybill-invoice:
-            partitionCount: 1
-            replicationFactor: 1
-            retentionInMs: 604800000
-            topicName: ${spring.application.name}.waybill-invoice.0
-        waybill-record:
-            partitionCount: 1
-            replicationFactor: 1
-            retentionInMs: 604800000
-            topicName: ${spring.application.name}.waybill-record.0
+
 server:
     port: 8015
 spring:
