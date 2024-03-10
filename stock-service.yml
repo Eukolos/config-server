@@ -1,11 +1,11 @@
 spring:
   application:
     name: stock-service
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          issuer-uri: ${KEYCLOAK_URL:http://localhost:9595}/auth/realms/warehouse_realm
+#  security:
+#    oauth2:
+#      resourceserver:
+#        jwt:
+#          issuer-uri: ${KEYCLOAK_URL:http://keycloak:9595}/auth/realms/warehouse_realm
   jpa:
     hibernate:
       ddl-auto: create
@@ -17,14 +17,14 @@ spring:
         jdbc:
           time_zone: UTC
   datasource:
-    url: jdbc:mysql://localhost:3306/stock
+    url: jdbc:mysql://mysql:3306/stock
     username: admin
     password: admin
     driver-class-name: com.mysql.cj.jdbc.Driver
-  boot:
-    admin:
-      client:
-        url: http://localhost:9889
+#  boot:
+#    admin:
+#      client:
+#        url: http://localhost:9889
 management:
   endpoints:
     web:
@@ -39,7 +39,7 @@ management:
     env:
       enabled: true
 kafka:
-  host: localhost:9092
+  host: kafka:9092
   topics:
     waybill-record:
       topic: warehouse-service.waybill-record.0
@@ -50,7 +50,7 @@ kafka:
 eureka:
   client:
     service-url:
-      default-zone: ${EUREKA_URI:http://localhost:8761/eureka}
+      default-zone: ${EUREKA_URI:http://eureka-service:8761/eureka}
   instance:
     instance-id: '${spring.application.name}:${random.value}  '
     prefer-ip-address: true
