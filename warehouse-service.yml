@@ -49,16 +49,10 @@ eureka:
     preferIpAddress: true
 kafka:
   host: kafka:9092
-  consumer:
-    auto-offset-reset: earliest
+  producer:
     bootstrap-servers: kafka:9092
-    key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-    properties:
-      spring:
-        json:
-          trusted:
-            packages: "*"
-    value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+    key-serializer: org.apache.kafka.common.serialization.StringSerializer
+    value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
   topics:
     waybill-invoice:
       partitionCount: 1
