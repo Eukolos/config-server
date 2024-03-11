@@ -21,6 +21,22 @@ spring:
     username: admin
     password: admin
     driver-class-name: com.mysql.cj.jdbc.Driver
+  kafka:
+    bootstrap-servers: kafka:9092
+    consumer:
+      auto-offset-reset: earliest
+      bootstrap-servers: kafka:9092
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      properties:
+        spring:
+          json:
+            trusted:
+              packages: "*"
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+    producer:
+      bootstrap-servers: kafka:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
 #  boot:
 #    admin:
 #      client:
@@ -38,8 +54,8 @@ management:
       enabled: true
     env:
       enabled: true
-
-
+server:
+  port: 8014
 eureka:
   client:
     fetchRegistry: true
@@ -49,5 +65,11 @@ eureka:
   instance:
     instance-id: ${spring.application.name}:${instanceId:${random.value}}
     preferIpAddress: true
-server:
-  port: 8014
+kafka:
+  host: kafka:9092
+  topics:
+    waybill-record:
+      topic: warehouse-service.waybill-record.0
+      consumerGroup: ${spring.application.name}-waybill-record-consumer
+      replicationFactor: 1
+      retentionInMs: 604800000
