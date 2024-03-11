@@ -1,6 +1,6 @@
 
 server:
-    port: 8025
+    port: 8015
 spring:
     application:
         name: warehouse-service
