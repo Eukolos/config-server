@@ -1,6 +1,6 @@
 
 server:
-    port: 8015
+    port: 8025
 spring:
     application:
         name: warehouse-service
@@ -16,10 +16,11 @@ spring:
             hibernate:
                 dialect: org.hibernate.dialect.PostgreSQLDialect
     kafka:
-      producer:
         bootstrap-servers: kafka:9092
-        key-serializer: org.apache.kafka.common.serialization.StringSerializer
-        value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+        producer:
+            bootstrap-servers: kafka:9092
+            key-serializer: org.apache.kafka.common.serialization.StringSerializer
+            value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
 #    security:
 #        oauth2:
 #            resourceserver:
