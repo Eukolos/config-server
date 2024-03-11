@@ -15,6 +15,11 @@ spring:
         properties:
             hibernate:
                 dialect: org.hibernate.dialect.PostgreSQLDialect
+    kafka:
+      producer:
+        bootstrap-servers: kafka:9092
+        key-serializer: org.apache.kafka.common.serialization.StringSerializer
+        value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
 #    security:
 #        oauth2:
 #            resourceserver:
@@ -49,10 +54,6 @@ eureka:
     preferIpAddress: true
 kafka:
   host: kafka:9092
-  producer:
-    bootstrap-servers: kafka:9092
-    key-serializer: org.apache.kafka.common.serialization.StringSerializer
-    value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
   topics:
     waybill-invoice:
       partitionCount: 1
