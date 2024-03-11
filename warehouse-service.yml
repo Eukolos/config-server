@@ -47,3 +47,26 @@ eureka:
   instance:
     instance-id: ${spring.application.name}:${instanceId:${random.value}}
     preferIpAddress: true
+kafka:
+  host: kafka:9092
+  consumer:
+    auto-offset-reset: earliest
+    bootstrap-servers: kafka:9092
+    key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    properties:
+      spring:
+        json:
+          trusted:
+            packages: "*"
+    value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+  topics:
+    waybill-invoice:
+      partitionCount: 1
+      replicationFactor: 1
+      retentionInMs: 604800000
+      topicName: ${spring.application.name}.waybill-invoice.0
+    waybill-record:
+      partitionCount: 1
+      replicationFactor: 1
+      retentionInMs: 604800000
+      topicName: ${spring.application.name}.waybill-record.0
