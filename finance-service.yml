@@ -20,6 +20,13 @@ spring:
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver
+  kafka:
+    bootstrap-servers: kafka:9092
+    consumer:
+      auto-offset-reset: earliest
+      bootstrap-servers: kafka:9092
+    producer:
+      bootstrap-servers: kafka:9092
 #  boot:
 #    admin:
 #      client:
@@ -46,8 +53,6 @@ kafka:
       consumerGroup: ${spring.application.name}-waybill-invoice-consumer
       replicationFactor: 1
       retentionInMs: 604800000
-
-
 eureka:
   client:
     fetchRegistry: true
