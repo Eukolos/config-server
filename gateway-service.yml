@@ -57,11 +57,11 @@ spring:
             client-id: warehouse_client
             client-secret: CQrBxcCAVfYTFGLMPeX6O0G2RHpJLBhM
             authorization-grant-type: authorization_code
-            redirect-uri: "http://gateway:9090/login/oauth2/code/{registrationId}"
+            redirect-uri: "http://localhost:9090/login/oauth2/code/{registrationId}"
             scope: openid, warehouse.read
         provider:
           my-provider:
-            issuer-uri: http://keycloak:8080/auth/realms/warehouse_realm
+            issuer-uri: http://localhost:8080/auth/realms/warehouse_realm
 management:
   endpoints:
     web:
