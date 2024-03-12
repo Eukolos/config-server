@@ -1,12 +1,10 @@
 spring:
   application:
     name: gateway-service
-  profiles:
-    active: default
-  boot:
-    admin:
-      client:
-        url: http://localhost:9889
+#  boot:
+#    admin:
+#      client:
+#        url: http://localhost:9889
   cloud:
     gateway:
       discovery:
@@ -57,13 +55,13 @@ spring:
           gateway:
             provider: my-provider
             client-id: warehouse_client
-            client-secret: b5GRFKL4gzha7adQmQNzFAe9RWWLBl7h
+            client-secret: UYDuZirNZExLK9ab2LVZtFYtrV86jiJG
             authorization-grant-type: authorization_code
-            redirect-uri: "http://localhost:8080/login/oauth2/code/{registrationId}"
+            redirect-uri: "http://gateway:8080/login/oauth2/code/{registrationId}"
             scope: openid, warehouse.read
         provider:
           my-provider:
-            issuer-uri: http://localhost:9595/auth/realms/warehouse_realm
+            issuer-uri: http://keycloak:9595/auth/realms/warehouse_realm
 management:
   endpoints:
     web:
@@ -77,13 +75,14 @@ management:
 #http://localhost:9595/auth/realms/warehouse_realm/:
 #  well-known/openid-configuration:
 
-
 eureka:
   client:
-    service-url:
-      default-zone: ${EUREKA_URI:http://localhost:8761/eureka}
+    fetchRegistry: true
+    registerWithEureka: true
+    serviceUrl:
+      defaultZone: http://eureka-service:8761/eureka
   instance:
-    instance-id: '${spring.application.name}:${random.value}  '
-    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${instanceId:${random.value}}
+    preferIpAddress: true
 server:
   port: 8080
