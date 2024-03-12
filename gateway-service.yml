@@ -57,11 +57,11 @@ spring:
             client-id: warehouse_client
             client-secret: UYDuZirNZExLK9ab2LVZtFYtrV86jiJG
             authorization-grant-type: authorization_code
-            redirect-uri: "http://gateway:8080/login/oauth2/code/{registrationId}"
+            redirect-uri: "http://gateway:9090/login/oauth2/code/{registrationId}"
             scope: openid, warehouse.read
         provider:
           my-provider:
-            issuer-uri: http://keycloak:9595/auth/realms/warehouse_realm
+            issuer-uri: http://keycloak:8080/auth/realms/warehouse_realm
 management:
   endpoints:
     web:
@@ -85,4 +85,4 @@ eureka:
     instance-id: ${spring.application.name}:${instanceId:${random.value}}
     preferIpAddress: true
 server:
-  port: 8080
+  port: 9090
